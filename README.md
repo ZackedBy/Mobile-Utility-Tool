@@ -1,137 +1,112 @@
-# Utility Tool App
+# 🛠️ Utility Tool App
 
-A modern React Native mobile application combining Flashlight and Bubble Level utilities, built with Expo and TypeScript.
+A professional-grade mobile utility application combining a **Flashlight**, **Bubble Level**, and **Compass**. Built with React Native (Expo), TypeScript, and Material Design 3.
 
-## Features
+> **Course Project:** Mobile App Development (TUNI)
+> **Grade Target:** 3/3 (Advanced Features Implemented)
 
-### 🔦 Flashlight
-- Toggle flashlight on/off with a large, intuitive button
-- Strobe mode with adjustable interval (100ms - 2000ms)
-- Graceful camera permission handling
-- Option to launch with flashlight automatically enabled
+## ✨ Features
 
-### 📐 Bubble Level
-- Real-time bubble level using device accelerometer
-- Visual bubble indicator that moves based on device tilt
-- Display of X and Y axis angles in degrees
-- Color-coded feedback (green when level, red when tilted)
+### 🔦 Smart Flashlight & Morse Transmitter
 
-### ⚙️ Settings
-- **Dark Mode Toggle**: Switch between light and dark themes
-- **Launch Preferences**: Toggle "Launch with Flashlight On"
-- **Feedback Form**: Send feedback to backend API
-- All preferences are persisted locally using AsyncStorage
+- **Tactical Toggle:** Large, responsive power button with haptic feedback.
+- **Text-to-Morse Code:** Type any text, and the flashlight transmits it via Morse code signals automatically.
+- **Visual Feedback:** Real-time display of the character being transmitted.
+- **Strobe Mode:** Adjustable blinking frequency (100ms - 2000ms).
+- **Smart Launch:** Option to automatically turn on the flashlight when the app opens.
 
-## Tech Stack
+### 📐 Precision Bubble Level
 
-- **Framework**: React Native with Expo (Managed Workflow)
-- **Language**: TypeScript
-- **UI Library**: React Native Paper (Material 3 Design)
-- **Navigation**: React Navigation (Bottom Tabs)
-- **State Management**: React Context API
-- **Storage**: AsyncStorage
-- **Device Features**:
-  - `expo-camera` for flashlight/torch functionality
-  - `expo-sensors` for accelerometer data
+- **Smooth Physics:** Uses `Animated.spring` API to interpolate raw accelerometer data for fluid, jitter-free movement.
+- **Visual Interface:** Material Design bubble indicator with X/Y axis degree readout.
+- **Calibration:** Color-coded feedback (Turns Green when perfectly level).
 
-## Project Structure
+### 🧭 Digital Compass
 
-```
+- **Real-time Heading:** Uses device Magnetometer to display magnetic heading (0-360°).
+- **Classic Navigation UI:** Professional design adhering to standard color codes (Red North, Dark Contrast).
+- **Cardinal Directions:** Clear display of direction (N, NE, E, SE, etc.).
+
+### ⚙️ Settings & Architecture
+
+- **Theming:** Dynamic Dark/Light mode support using React Native Paper.
+- **Persistence:** All user preferences (Theme, Launch Settings) saved via `AsyncStorage`.
+- **Feedback System:** Integrated form sending POST requests to a backend API.
+
+---
+
+## 🏗️ Tech Stack
+
+- **Core:** React Native (Expo SDK 52), TypeScript
+- **UI Library:** React Native Paper (Material Design 3)
+- **Navigation:** React Navigation (Bottom Tabs)
+- **State Management:** React Context API + Hooks
+- **Storage:** `@react-native-async-storage/async-storage`
+- **Sensors & Hardware:**
+  - `expo-camera` (Torch/Flashlight)
+  - `expo-sensors` (Accelerometer & Magnetometer)
+  - `expo-haptics` (Tactile feedback)
+
+---
+
+## 📂 Project Structure
+
+```text
 utility-tool-app/
-├── App.tsx                    # Main app entry with navigation
+├── App.tsx                     # Application Entry & Navigation Setup
+├── app.json                    # Expo Configuration
 ├── src/
 │   ├── context/
-│   │   └── PreferencesContext.tsx  # Global state management
-│   └── screens/
-│       ├── FlashlightScreen.tsx   # Flashlight functionality
-│       ├── LevelScreen.tsx         # Bubble level with accelerometer
-│       └── SettingsScreen.tsx     # Settings and feedback form
-├── package.json
-├── tsconfig.json
-└── app.json
+│   │   └── PreferencesContext.tsx  # Global State (Theme, Settings)
+│   ├── screens/
+│   │   ├── FlashlightScreen.tsx    # Torch control & Morse Logic
+│   │   ├── LevelScreen.tsx         # Accelerometer with Animation
+│   │   ├── CompassScreen.tsx       # Magnetometer Logic
+│   │   └── SettingsScreen.tsx      # Preferences & API Form
+│   └── utils/
+│       └── morseDictionary.ts      # (Optional) Helper for Morse translation
+└── assets/                         # Icons and Splash screens
+
+🚀 Installation & Setup
+Clone the repository:
+
+Bash
+
+git clone [https://github.com/ZackedBy/Mobile-Utility-Tool.git](https://github.com/ZackedBy/Mobile-Utility-Tool.git)
+cd Mobile-Utility-Tool
+Install dependencies:
+
+Bash
+
+npm install
+Start the app:
+
+Bash
+
+npx expo start --tunnel
+(Note: Using --tunnel is recommended for stable connection)
+
+Run on Device:
+
+Scan the QR code with Expo Go (Android/iOS).
+
+✅ Requirements Fulfilled (Grading Criteria)
+This project meets all criteria for the highest grade (3/3):
+
+Modern UI: Implemented Material 3 Design with consistent theming and professional color palette (#0B2B5B).
+
+Complex Navigation: Bottom Tab Navigator managing 4 distinct screens.
+
+Advanced Device Features: Simultaneous use of Camera, Accelerometer, and Magnetometer.
+
+Robust Logic: Custom algorithms for Morse Code timing and Sensor data interpolation.
+
+Backend Integration: Functional Feedback form connecting to JSONPlaceholder API.
+
+Local Storage: Persisting user preferences across app restarts.
+
+State Management: Clean Context API implementation avoiding prop-drilling.
+
+📝 License
+Created for educational purposes.
 ```
-
-## Installation
-
-1. **Install dependencies:**
-   ```bash
-   npm install
-   ```
-
-2. **Start the development server:**
-   ```bash
-   npm start
-   ```
-
-3. **Run on your device:**
-   - Press `i` for iOS Simulator
-   - Press `a` for Android Emulator
-   - Scan QR code with Expo Go app on your physical device
-
-## Requirements Fulfilled
-
-✅ **Modern UI**: React Native Paper with Material 3 design, supporting dark/light mode  
-✅ **Navigation**: Bottom Tab Navigator with 3 screens  
-✅ **Device Features**: Camera (flashlight) and Accelerometer (level)  
-✅ **Local Storage**: AsyncStorage for persisting user preferences  
-✅ **Backend Connection**: Feedback form sends POST request to JSONPlaceholder API  
-✅ **State Management**: React Context API for global theme and preferences  
-✅ **TypeScript**: Full TypeScript implementation  
-✅ **Error Handling**: Graceful permission handling and API error management  
-
-## Key Implementation Details
-
-### State Management
-- `PreferencesContext` manages:
-  - Dark/Light mode theme
-  - Launch with flashlight preference
-  - All preferences persisted to AsyncStorage
-
-### Flashlight Screen
-- Uses `expo-camera` Camera component for torch control
-- Hidden camera view for torch API access
-- Strobe mode with configurable interval
-- Respects "Launch with Flashlight On" preference
-
-### Level Screen
-- Uses `expo-sensors` Accelerometer
-- Converts accelerometer data to bubble position
-- Calculates and displays X/Y axis angles
-- Visual feedback with color-coded bubble
-
-### Settings Screen
-- Toggle switches for preferences (saved to AsyncStorage)
-- Feedback form with loading states
-- POST request to `https://jsonplaceholder.typicode.com/posts`
-- Success/Error Snackbar notifications
-
-## API Integration
-
-The feedback form sends data to:
-```
-POST https://jsonplaceholder.typicode.com/posts
-Content-Type: application/json
-
-{
-  "title": "User Feedback",
-  "body": "<user feedback text>",
-  "userId": 1
-}
-```
-
-## Permissions
-
-- **Camera**: Required for flashlight functionality
-- **Accelerometer**: Automatically available, no permission needed
-
-## Development Notes
-
-- All preferences are automatically saved to AsyncStorage
-- Theme changes apply immediately across the app
-- Flashlight automatically turns off when app closes
-- Accelerometer updates at ~60fps for smooth bubble movement
-
-## License
-
-Created for educational purposes as part of a university mobile app development project.
-
